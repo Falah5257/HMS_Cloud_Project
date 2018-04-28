@@ -14264,3 +14264,40 @@ Processing by HotelsController#home as HTML
 Completed 200 OK in 60ms (Views: 56.7ms | ActiveRecord: 1.3ms)
 
 
+Started GET "/profiles/new" for 127.0.0.1 at 2018-04-29 00:18:18 +0500
+Processing by ProfilesController#new as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mProfile Load (0.2ms)[0m  [1m[34mSELECT "profiles".* FROM "profiles" WHERE "profiles"."user_id" = ?[0m  [["user_id", 1]]
+  Rendering profiles/new.html.erb within layouts/application
+  Rendered profiles/_form.html.erb (6.1ms)
+  Rendered profiles/new.html.erb within layouts/application (7.2ms)
+  [1m[36mProfile Load (0.1ms)[0m  [1m[34mSELECT  "profiles".* FROM "profiles" WHERE "profiles"."user_id" = ? LIMIT ?[0m  [["user_id", 1], ["LIMIT", 1]]
+  Rendered layouts/_nav.html.erb (1.7ms)
+Completed 200 OK in 63ms (Views: 55.1ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/hotels/home" for 127.0.0.1 at 2018-04-29 00:18:19 +0500
+Processing by HotelsController#home as HTML
+  [1m[36mHotel Load (0.3ms)[0m  [1m[34mSELECT  "hotels".* FROM "hotels" ORDER BY "hotels"."id" DESC LIMIT ?[0m  [["LIMIT", 1]]
+  Rendering hotels/home.html.erb within layouts/application
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mRatingCache Load (0.4ms)[0m  [1m[34mSELECT  "rating_caches".* FROM "rating_caches" WHERE "rating_caches"."cacheable_id" = ? AND "rating_caches"."cacheable_type" = ? AND "rating_caches"."dimension" = ? LIMIT ?[0m  [["cacheable_id", 1], ["cacheable_type", "Hotel"], ["dimension", "ratings"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "rates" WHERE "rates"."rater_id" = ? AND "rates"."dimension" = ? AND "rates"."rateable_id" = ? AND "rates"."rateable_type" = ?[0m  [["rater_id", 1], ["dimension", "ratings"], ["rateable_id", 1], ["rateable_type", "Hotel"]]
+  [1m[36mReview Load (0.1ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."hotel_id" = ?[0m  [["hotel_id", 1]]
+  Rendered hotels/home.html.erb within layouts/application (8.1ms)
+  [1m[36mProfile Load (0.2ms)[0m  [1m[34mSELECT  "profiles".* FROM "profiles" WHERE "profiles"."user_id" = ? LIMIT ?[0m  [["user_id", 1], ["LIMIT", 1]]
+  Rendered layouts/_nav.html.erb (1.7ms)
+Completed 200 OK in 55ms (Views: 51.3ms | ActiveRecord: 1.4ms)
+
+
+Started GET "/rooms" for 127.0.0.1 at 2018-04-29 00:18:20 +0500
+Processing by RoomsController#index as HTML
+  Rendering rooms/index.html.erb within layouts/application
+  [1m[36mRoom Load (0.2ms)[0m  [1m[34mSELECT "rooms".* FROM "rooms"[0m
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered rooms/index.html.erb within layouts/application (3.1ms)
+  [1m[36mProfile Load (0.1ms)[0m  [1m[34mSELECT  "profiles".* FROM "profiles" WHERE "profiles"."user_id" = ? LIMIT ?[0m  [["user_id", 1], ["LIMIT", 1]]
+  Rendered layouts/_nav.html.erb (1.6ms)
+Completed 200 OK in 54ms (Views: 40.9ms | ActiveRecord: 0.6ms)
+
+
