@@ -10,7 +10,6 @@ gem 'bootstrap-sass', '~> 3.3.7'
 gem 'devise'
 gem 'jquery-rails'
 gem 'ratyrate'
-gem 'pg', '~> 0.20', group: :production
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.4'
 # Use Puma as the app server
@@ -55,6 +54,9 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
 end
 
+group :production do
+  gem 'pg', '~> 0.21'
+end
 
 group :test do
   gem 'rails-controller-testing', '0.1.1'
