@@ -2,7 +2,7 @@
 
 <h1>Users</h1>
 
-<table>
+<table class="table-bordered" style="width: 100%">
   <thead>
     <tr>
       <th>User_id</th>
@@ -27,9 +27,3 @@
   </tbody>
 </table>
 
-<br>
-<% if current_user.present? %>
-<% if current_user.is_admin? %> 
-<%= link_to 'New Room', new_room_path %>
-<% end %>
-<% end %>

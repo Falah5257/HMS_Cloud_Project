@@ -25,7 +25,15 @@ class ProfilesController < ApplicationController
   # POST /profiles.json
   def create
     @profile = Profile.new(profile_params)
-    @profile.user_id = current_user.  id
+    @profile.user_id = current_user.id
+    puts "***********************"
+      puts params[:image_id]
+      puts  "**********************"
+    if params[:image_id].present?
+      preloaded = Cloudinary::PreloadedFile.new(params[:image_id])         
+      raise "Invalid upload signature" if !preloaded.valid?
+      @profile.image_id = preloaded.identifier
+    end
     respond_to do |format|
       if @profile.save
         format.html { redirect_to @profile, notice: 'Profile was successfully created.' }
@@ -40,6 +48,15 @@ class ProfilesController < ApplicationController
   # PATCH/PUT /profiles/1
   # PATCH/PUT /profiles/1.json
   def update
+    if params[:image_id].present?
+      preloaded = Cloudinary::PreloadedFile.new(params[:image_id])         
+      raise "Invalid upload signature" if !preloaded.valid?
+      puts "***********************"
+      puts preloaded.identifier
+      puts  "**********************"
+      @profile.image_id = preloaded.identifier
+      @profile.save
+    end
     respond_to do |format|
       if @profile.update(profile_params)
         format.html { redirect_to @profile, notice: 'Profile was successfully updated.' }
@@ -71,4 +88,4 @@ class ProfilesController < ApplicationController
     def profile_params
       params.require(:profile).permit(:user_id, :bio, :username,:avatar)
     end
-end
+  end

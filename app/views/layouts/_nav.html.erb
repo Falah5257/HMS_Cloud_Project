@@ -29,12 +29,18 @@
                     <%= link_to "Rooms",rooms_path,class: "navbar-brand topnav" %>
                 </li>
                 <li>
+                    <% if current_user.is_admin? %>
+                    <%= link_to "Users",users_index_path,class: "navbar-brand topnav" %>
+                    <% end %>
+                </li>
+                <li>
                     <% if current_user.present? %>
                     <%= link_to "Sign Out",destroy_user_session_path, method: 'delete' %>
                     <% else %>
                     <%= link_to "Sign In",new_user_session_path %>
                     <% end %>
                 </li>
+                
             </ul>
         </div>
         <!-- /.navbar-collapse -->

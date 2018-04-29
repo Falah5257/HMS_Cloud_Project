@@ -17,3 +17,10 @@
 //= require jquery.raty
 //= require ratyrate
 //= require_tree 
+//= require cloudinary
+
+$(function() {
+  if($.fn.cloudinary_fileupload !== undefined) {
+    $("input.cloudinary-fileupload[type=file]").cloudinary_fileupload();
+  }
+});

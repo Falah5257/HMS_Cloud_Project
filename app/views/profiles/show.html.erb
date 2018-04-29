@@ -3,7 +3,7 @@
 <p>
   <strong>User:</strong>
   <br>
-  <%= image_tag @profile.avatar.url(:medium)%>
+ <%= cl_image_tag(@profile.image_id, :crop => :fill, :width => 120, :height => 80) %>
 </p>
 <p>
   <strong>User:</strong>
