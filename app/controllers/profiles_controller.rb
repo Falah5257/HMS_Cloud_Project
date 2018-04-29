@@ -26,9 +26,6 @@ class ProfilesController < ApplicationController
   def create
     @profile = Profile.new(profile_params)
     @profile.user_id = current_user.id
-    puts "***********************"
-      puts params[:image_id]
-      puts  "**********************"
     if params[:image_id].present?
       preloaded = Cloudinary::PreloadedFile.new(params[:image_id])         
       raise "Invalid upload signature" if !preloaded.valid?
@@ -51,9 +48,6 @@ class ProfilesController < ApplicationController
     if params[:image_id].present?
       preloaded = Cloudinary::PreloadedFile.new(params[:image_id])         
       raise "Invalid upload signature" if !preloaded.valid?
-      puts "***********************"
-      puts preloaded.identifier
-      puts  "**********************"
       @profile.image_id = preloaded.identifier
       @profile.save
     end

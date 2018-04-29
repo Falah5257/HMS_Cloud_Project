@@ -18831,3 +18831,199 @@ Processing by HotelsController#home as HTML
 Completed 200 OK in 66ms (Views: 63.7ms | ActiveRecord: 1.2ms)
 
 
+Started GET "/" for 127.0.0.1 at 2018-04-29 11:38:37 +0500
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by HotelsController#home as HTML
+  [1m[36mHotel Load (0.1ms)[0m  [1m[34mSELECT  "hotels".* FROM "hotels" ORDER BY "hotels"."id" DESC LIMIT ?[0m  [["LIMIT", 1]]
+  Rendering hotels/home.html.erb within layouts/application
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mRatingCache Load (0.1ms)[0m  [1m[34mSELECT  "rating_caches".* FROM "rating_caches" WHERE "rating_caches"."cacheable_id" = ? AND "rating_caches"."cacheable_type" = ? AND "rating_caches"."dimension" = ? LIMIT ?[0m  [["cacheable_id", 1], ["cacheable_type", "Hotel"], ["dimension", "ratings"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "rates" WHERE "rates"."rater_id" = ? AND "rates"."dimension" = ? AND "rates"."rateable_id" = ? AND "rates"."rateable_type" = ?[0m  [["rater_id", 2], ["dimension", "ratings"], ["rateable_id", 1], ["rateable_type", "Hotel"]]
+  [1m[36mReview Load (0.2ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."hotel_id" = ?[0m  [["hotel_id", 1]]
+  Rendered hotels/home.html.erb within layouts/application (46.2ms)
+  [1m[36mProfile Load (0.2ms)[0m  [1m[34mSELECT  "profiles".* FROM "profiles" WHERE "profiles"."user_id" = ? LIMIT ?[0m  [["user_id", 2], ["LIMIT", 1]]
+  Rendered layouts/_nav.html.erb (25.9ms)
+Completed 200 OK in 332ms (Views: 298.6ms | ActiveRecord: 3.8ms)
+
+
+Started GET "/rooms" for 127.0.0.1 at 2018-04-29 11:38:39 +0500
+Processing by RoomsController#index as HTML
+  Rendering rooms/index.html.erb within layouts/application
+  [1m[36mRoom Load (0.2ms)[0m  [1m[34mSELECT "rooms".* FROM "rooms"[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  Rendered rooms/index.html.erb within layouts/application (22.0ms)
+  [1m[36mProfile Load (0.1ms)[0m  [1m[34mSELECT  "profiles".* FROM "profiles" WHERE "profiles"."user_id" = ? LIMIT ?[0m  [["user_id", 2], ["LIMIT", 1]]
+  Rendered layouts/_nav.html.erb (1.8ms)
+Completed 200 OK in 103ms (Views: 94.0ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/rooms/1/roompictures/index" for 127.0.0.1 at 2018-04-29 11:38:41 +0500
+Processing by RoompicturesController#index as HTML
+  Parameters: {"room_id"=>"1"}
+  [1m[36mRoom Load (0.2ms)[0m  [1m[34mSELECT  "rooms".* FROM "rooms" WHERE "rooms"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering roompictures/index.html.erb within layouts/application
+  [1m[36mRoompicture Load (0.2ms)[0m  [1m[34mSELECT "roompictures".* FROM "roompictures" WHERE "roompictures"."room_id" = ?[0m  [["room_id", 1]]
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  Rendered roompictures/index.html.erb within layouts/application (115.8ms)
+  [1m[36mProfile Load (0.1ms)[0m  [1m[34mSELECT  "profiles".* FROM "profiles" WHERE "profiles"."user_id" = ? LIMIT ?[0m  [["user_id", 2], ["LIMIT", 1]]
+  Rendered layouts/_nav.html.erb (2.0ms)
+Completed 200 OK in 180ms (Views: 165.7ms | ActiveRecord: 1.2ms)
+
+
+Started POST "/rooms/1/roompictures/add_picture" for 127.0.0.1 at 2018-04-29 11:38:48 +0500
+Processing by RoompicturesController#add_picture as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"lqDemb+aS5cJ5WxlAnNU025w6a5ZUVzu1FsVPXoER3kNDoOPQD4Z7VTsDStKLp4SkaQGUapmqgPJelEHh7VBpg==", "file"=>"", "commit"=>"add", "room_id"=>"1"}
+  [1m[36mRoom Load (0.2ms)[0m  [1m[34mSELECT  "rooms".* FROM "rooms" WHERE "rooms"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.8ms)[0m  [1m[32mINSERT INTO "roompictures" ("room_id", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["room_id", 1], ["created_at", "2018-04-29 06:38:48.200548"], ["updated_at", "2018-04-29 06:38:48.200548"]]
+  [1m[35m (8.9ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/rooms/1/roompictures/index
+Completed 302 Found in 15ms (ActiveRecord: 10.0ms)
+
+
+Started GET "/rooms/1/roompictures/index" for 127.0.0.1 at 2018-04-29 11:38:48 +0500
+Processing by RoompicturesController#index as HTML
+  Parameters: {"room_id"=>"1"}
+  [1m[36mRoom Load (0.2ms)[0m  [1m[34mSELECT  "rooms".* FROM "rooms" WHERE "rooms"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering roompictures/index.html.erb within layouts/application
+  [1m[36mRoompicture Load (0.2ms)[0m  [1m[34mSELECT "roompictures".* FROM "roompictures" WHERE "roompictures"."room_id" = ?[0m  [["room_id", 1]]
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  Rendered roompictures/index.html.erb within layouts/application (4.5ms)
+  [1m[36mProfile Load (0.1ms)[0m  [1m[34mSELECT  "profiles".* FROM "profiles" WHERE "profiles"."user_id" = ? LIMIT ?[0m  [["user_id", 2], ["LIMIT", 1]]
+  Rendered layouts/_nav.html.erb (1.9ms)
+Completed 200 OK in 72ms (Views: 69.5ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/rooms/1/roompictures/index" for 127.0.0.1 at 2018-04-29 11:40:31 +0500
+Processing by RoompicturesController#index as HTML
+  Parameters: {"room_id"=>"1"}
+  [1m[36mRoom Load (0.2ms)[0m  [1m[34mSELECT  "rooms".* FROM "rooms" WHERE "rooms"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering roompictures/index.html.erb within layouts/application
+  [1m[36mRoompicture Load (0.2ms)[0m  [1m[34mSELECT "roompictures".* FROM "roompictures" WHERE "roompictures"."room_id" = ?[0m  [["room_id", 1]]
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  Rendered roompictures/index.html.erb within layouts/application (15.6ms)
+  [1m[36mProfile Load (0.1ms)[0m  [1m[34mSELECT  "profiles".* FROM "profiles" WHERE "profiles"."user_id" = ? LIMIT ?[0m  [["user_id", 2], ["LIMIT", 1]]
+  Rendered layouts/_nav.html.erb (12.2ms)
+Completed 200 OK in 203ms (Views: 178.7ms | ActiveRecord: 2.8ms)
+
+
+Started POST "/rooms/1/roompictures/1/remove_picture" for 127.0.0.1 at 2018-04-29 11:40:32 +0500
+Processing by RoompicturesController#remove_picture as HTML
+  Parameters: {"authenticity_token"=>"j3H2BuTai5Y3+vvy3/u5vKCTFXEYWfxHBRCjZVS0DHtyMWi1FFl2oHMZcTXt5u117NHHMAMyEz+n7ChV03Vo4w==", "room_id"=>"1", "id"=>"1"}
+  [1m[36mRoompicture Load (0.3ms)[0m  [1m[34mSELECT  "roompictures".* FROM "roompictures" WHERE "roompictures"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[31mDELETE FROM "roompictures" WHERE "roompictures"."id" = ?[0m  [["id", 1]]
+  [1m[35m (7.1ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/rooms/1/roompictures/index
+Completed 302 Found in 12ms (ActiveRecord: 7.7ms)
+
+
+Started GET "/rooms/1/roompictures/index" for 127.0.0.1 at 2018-04-29 11:40:32 +0500
+Processing by RoompicturesController#index as HTML
+  Parameters: {"room_id"=>"1"}
+  [1m[36mRoom Load (0.1ms)[0m  [1m[34mSELECT  "rooms".* FROM "rooms" WHERE "rooms"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering roompictures/index.html.erb within layouts/application
+  [1m[36mRoompicture Load (0.1ms)[0m  [1m[34mSELECT "roompictures".* FROM "roompictures" WHERE "roompictures"."room_id" = ?[0m  [["room_id", 1]]
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  Rendered roompictures/index.html.erb within layouts/application (2.9ms)
+  [1m[36mProfile Load (0.1ms)[0m  [1m[34mSELECT  "profiles".* FROM "profiles" WHERE "profiles"."user_id" = ? LIMIT ?[0m  [["user_id", 2], ["LIMIT", 1]]
+  Rendered layouts/_nav.html.erb (2.4ms)
+Completed 200 OK in 69ms (Views: 67.5ms | ActiveRecord: 0.5ms)
+
+
+Started POST "/rooms/1/roompictures/add_picture" for 127.0.0.1 at 2018-04-29 11:40:37 +0500
+Processing by RoompicturesController#add_picture as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"qWQXFXuyXAyjWMDKXDq8u23TGwAzlZGnSzV13kmwYfhUJImmizGhOue7Sg1uJ+hyIZHJQSj+ft/pyf7uznEFYA==", "file"=>"", "commit"=>"add", "room_id"=>"1"}
+  [1m[36mRoom Load (0.3ms)[0m  [1m[34mSELECT  "rooms".* FROM "rooms" WHERE "rooms"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.8ms)[0m  [1m[32mINSERT INTO "roompictures" ("room_id", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["room_id", 1], ["created_at", "2018-04-29 06:40:37.752015"], ["updated_at", "2018-04-29 06:40:37.752015"]]
+  [1m[35m (8.2ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/rooms/1/roompictures/index
+Completed 302 Found in 17ms (ActiveRecord: 9.4ms)
+
+
+Started GET "/rooms/1/roompictures/index" for 127.0.0.1 at 2018-04-29 11:40:37 +0500
+Processing by RoompicturesController#index as HTML
+  Parameters: {"room_id"=>"1"}
+  [1m[36mRoom Load (0.1ms)[0m  [1m[34mSELECT  "rooms".* FROM "rooms" WHERE "rooms"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering roompictures/index.html.erb within layouts/application
+  [1m[36mRoompicture Load (0.2ms)[0m  [1m[34mSELECT "roompictures".* FROM "roompictures" WHERE "roompictures"."room_id" = ?[0m  [["room_id", 1]]
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  Rendered roompictures/index.html.erb within layouts/application (3.7ms)
+  [1m[36mProfile Load (0.1ms)[0m  [1m[34mSELECT  "profiles".* FROM "profiles" WHERE "profiles"."user_id" = ? LIMIT ?[0m  [["user_id", 2], ["LIMIT", 1]]
+  Rendered layouts/_nav.html.erb (1.8ms)
+Completed 200 OK in 60ms (Views: 58.1ms | ActiveRecord: 0.6ms)
+
+
+Started POST "/rooms/1/roompictures/1/remove_picture" for 127.0.0.1 at 2018-04-29 11:41:09 +0500
+Processing by RoompicturesController#remove_picture as HTML
+  Parameters: {"authenticity_token"=>"hXPzTEDs98Quu608kFCMaGywHoutWKJ0ns053NpfXOZ4M23/sG8K8mpYJ/uiTdihIPLMyrYzTQw8MbLsXZ44fg==", "room_id"=>"1", "id"=>"1"}
+  [1m[36mRoompicture Load (0.2ms)[0m  [1m[34mSELECT  "roompictures".* FROM "roompictures" WHERE "roompictures"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[31mDELETE FROM "roompictures" WHERE "roompictures"."id" = ?[0m  [["id", 1]]
+  [1m[35m (7.1ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/rooms/1/roompictures/index
+Completed 302 Found in 12ms (ActiveRecord: 7.6ms)
+
+
+Started GET "/rooms/1/roompictures/index" for 127.0.0.1 at 2018-04-29 11:41:09 +0500
+Processing by RoompicturesController#index as HTML
+  Parameters: {"room_id"=>"1"}
+  [1m[36mRoom Load (0.1ms)[0m  [1m[34mSELECT  "rooms".* FROM "rooms" WHERE "rooms"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering roompictures/index.html.erb within layouts/application
+  [1m[36mRoompicture Load (0.2ms)[0m  [1m[34mSELECT "roompictures".* FROM "roompictures" WHERE "roompictures"."room_id" = ?[0m  [["room_id", 1]]
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  Rendered roompictures/index.html.erb within layouts/application (4.5ms)
+  [1m[36mProfile Load (0.1ms)[0m  [1m[34mSELECT  "profiles".* FROM "profiles" WHERE "profiles"."user_id" = ? LIMIT ?[0m  [["user_id", 2], ["LIMIT", 1]]
+  Rendered layouts/_nav.html.erb (2.2ms)
+Completed 200 OK in 68ms (Views: 65.7ms | ActiveRecord: 0.7ms)
+
+
+Started POST "/rooms/1/roompictures/add_picture" for 127.0.0.1 at 2018-04-29 11:41:41 +0500
+Processing by RoompicturesController#add_picture as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"tRERG4pXRRSyfKbhpmd9LIwg5UQBWoWiiYimWvWRdC1IUY+oetS4IvafLCaUeinlwGI3BRoxatordC1qclAQtQ==", "file"=>"", "commit"=>"add", "room_id"=>"1"}
+  [1m[36mRoom Load (0.2ms)[0m  [1m[34mSELECT  "rooms".* FROM "rooms" WHERE "rooms"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (1.7ms)[0m  [1m[32mINSERT INTO "roompictures" ("room_id", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["room_id", 1], ["created_at", "2018-04-29 06:41:41.825753"], ["updated_at", "2018-04-29 06:41:41.825753"]]
+  [1m[35m (7.1ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/rooms/1/roompictures/index
+Completed 302 Found in 14ms (ActiveRecord: 9.1ms)
+
+
+Started GET "/rooms/1/roompictures/index" for 127.0.0.1 at 2018-04-29 11:41:41 +0500
+Processing by RoompicturesController#index as HTML
+  Parameters: {"room_id"=>"1"}
+  [1m[36mRoom Load (0.1ms)[0m  [1m[34mSELECT  "rooms".* FROM "rooms" WHERE "rooms"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering roompictures/index.html.erb within layouts/application
+  [1m[36mRoompicture Load (0.2ms)[0m  [1m[34mSELECT "roompictures".* FROM "roompictures" WHERE "roompictures"."room_id" = ?[0m  [["room_id", 1]]
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  Rendered roompictures/index.html.erb within layouts/application (4.5ms)
+  [1m[36mProfile Load (0.1ms)[0m  [1m[34mSELECT  "profiles".* FROM "profiles" WHERE "profiles"."user_id" = ? LIMIT ?[0m  [["user_id", 2], ["LIMIT", 1]]
+  Rendered layouts/_nav.html.erb (1.8ms)
+Completed 200 OK in 67ms (Views: 64.8ms | ActiveRecord: 0.8ms)
+
+
+Started POST "/rooms/1/roompictures/1/remove_picture" for 127.0.0.1 at 2018-04-29 11:41:52 +0500
+Processing by RoompicturesController#remove_picture as HTML
+  Parameters: {"authenticity_token"=>"uZbZ4ytRVXd7VCIRPVpn1FjsZGg1uLfW8RLSTWjaNxFE1kdQ29KoQT+3qNYPRzMdFK62KS7TWK5T7ll97xtTiQ==", "room_id"=>"1", "id"=>"1"}
+  [1m[36mRoompicture Load (0.1ms)[0m  [1m[34mSELECT  "roompictures".* FROM "roompictures" WHERE "roompictures"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.7ms)[0m  [1m[31mDELETE FROM "roompictures" WHERE "roompictures"."id" = ?[0m  [["id", 1]]
+  [1m[35m (7.1ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/rooms/1/roompictures/index
+Completed 302 Found in 11ms (ActiveRecord: 7.9ms)
+
+
+Started GET "/rooms/1/roompictures/index" for 127.0.0.1 at 2018-04-29 11:41:52 +0500
+Processing by RoompicturesController#index as HTML
+  Parameters: {"room_id"=>"1"}
+  [1m[36mRoom Load (0.1ms)[0m  [1m[34mSELECT  "rooms".* FROM "rooms" WHERE "rooms"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering roompictures/index.html.erb within layouts/application
+  [1m[36mRoompicture Load (0.2ms)[0m  [1m[34mSELECT "roompictures".* FROM "roompictures" WHERE "roompictures"."room_id" = ?[0m  [["room_id", 1]]
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  Rendered roompictures/index.html.erb within layouts/application (3.7ms)
+  [1m[36mProfile Load (0.1ms)[0m  [1m[34mSELECT  "profiles".* FROM "profiles" WHERE "profiles"."user_id" = ? LIMIT ?[0m  [["user_id", 2], ["LIMIT", 1]]
+  Rendered layouts/_nav.html.erb (2.1ms)
+Completed 200 OK in 62ms (Views: 60.1ms | ActiveRecord: 0.6ms)
+
+
