@@ -58,7 +58,7 @@ ActiveRecord::Schema.define(version: 20180429044131) do
     t.string "username"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "image_id"
+    t.text "image_id"
     t.index ["user_id"], name: "index_profiles_on_user_id"
   end
 
@@ -101,7 +101,7 @@ ActiveRecord::Schema.define(version: 20180429044131) do
     t.integer "room_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "image_id"
+    t.text "image_id"
     t.index ["room_id"], name: "index_roompictures_on_room_id"
   end
 
